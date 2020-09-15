@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AggregateDataAccess.cs" />
+    <Compile Include="Models\BaseModel.cs" />
     <Compile Include="SettlementAttempt\EfSettlementAttemptDataAccess.cs" />
     <Compile Include="SettlementAttempt\ISettlementAttemptDataAccess.cs" />
     <Compile Include="Program.cs" />
