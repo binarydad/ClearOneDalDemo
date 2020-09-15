@@ -14,19 +14,37 @@ namespace BinaryDad.AggregateDal
             // get instance via structuremap, as is typical
             var settlementAttemptDataAccess = container.GetInstance<ISettlementAttemptDataAccess>();
 
-            var attempt = new SettlementAttempt
+            #region Add attempt
+
+            var newAttempt = new SettlementAttempt
             {
                 ClientFirstName = "Ryan",
                 ClientLastName = "Peters",
                 CreatedBy = "rpeters"
             };
 
-            settlementAttemptDataAccess.AddAttempt(attempt);
+            settlementAttemptDataAccess.AddAttempt(newAttempt);
 
             // in most cases, the QuickBase DAL will update "RecordId" and 
             // the EF DAL will update "Id"
-            Console.WriteLine($"Attempt ID (SQL) => {attempt.Id}");
-            Console.WriteLine($"Attempt ID (QuickBase) => {attempt.RecordId}");
+            Console.WriteLine($"Attempt ID (SQL) => {newAttempt.Id}");
+            Console.WriteLine($"Attempt ID (QuickBase) => {newAttempt.RecordId}");
+
+            #endregion
+
+            #region Get attempt
+
+            var attempt = settlementAttemptDataAccess.GetAttempt(1234);
+
+            // dump the attempt
+            Console.WriteLine($"{nameof(attempt.Id)} => {attempt.Id}");
+            Console.WriteLine($"{nameof(attempt.RecordId)} => {attempt.RecordId}");
+            Console.WriteLine($"{nameof(attempt.ClientFirstName)} => {attempt.ClientFirstName}");
+            Console.WriteLine($"{nameof(attempt.ClientLastName)} => {attempt.ClientLastName}");
+            Console.WriteLine($"{nameof(attempt.Created)} => {attempt.Created}");
+            Console.WriteLine($"{nameof(attempt.CreatedBy)} => {attempt.CreatedBy}");
+
+            #endregion
 
             // pause
             Console.ReadLine();
