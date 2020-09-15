@@ -3,10 +3,13 @@ using System;
 
 namespace BinaryDad.AggregateDal
 {
-    public class QuickBaseSettlementAttemptDataAccess : ISettlementAttemptDataAccess
+    public class QuickBaseSettlementAttemptDataAccess : EFSettlementAttemptDataAccess
     {
-        public bool AddAttempt(SettlementAttempt attempt)
+        public override bool AddAttempt(SettlementAttempt attempt)
         {
+            // save to SQL first
+            base.AddAttempt(attempt);
+
             // 1. create attempt in QuickBase ("Id" SQL PK should already be populated)
             // 2. update the "RecordId" property/PK of attempt upon insertion
             // 3. return if operation is successful
@@ -18,8 +21,5 @@ namespace BinaryDad.AggregateDal
 
             return true;
         }
-
-        // NOTE: we have no need to retrieve a record from QB, as it will come from SQL
-        public SettlementAttempt GetAttempt(int recordId) => null;
     }
 }

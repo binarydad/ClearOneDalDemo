@@ -52,21 +52,10 @@ namespace BinaryDad.AggregateDal
 
         private static IContainer CreateContainer()
         {
-            /* NOTES:
-             * The StructureMap container will drive the instances of the DALs that will be invoked. 
-             * DALs that inherit from AggregateDataAccess<T> will automatically aggregate types implementing T
-             * and will invoke them. This means we can have implementations of QuickBaseXxxDataAccess and 
-             * EfXxxDataAccess that focus solely on their own operations. Once we decide to turn off a feature
-             * (i.e., we no longer need to save to QB for a particular DAL), we can change the .Use<T>()
-             * to use a regular EfXxxDataAccess instance. 
-             * 
-             * NO OTHER PARTS OF THE CODEBASE WOULD NEED TO BE TOUCHED, as we're only changing the instance
-             * of a DAL from an aggregate to a singular instance */
-
             return new Container(c =>
             {
-                // when both DALs are needed (SQL and QuickBase)
-                c.For<ISettlementAttemptDataAccess>().Singleton().Use<SettlementAttemptDataAccess>();
+                // when saving to QuickBase is needed (as well as SQL)
+                c.For<ISettlementAttemptDataAccess>().Singleton().Use<QuickBaseSettlementAttemptDataAccess>();
 
                 // when only SQL is needed
                 //c.For<ISettlementAttemptDataAccess>().Singleton().Use<EfSettlementAttemptDataAccess>();

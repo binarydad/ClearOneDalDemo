@@ -46,7 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AggregateDataAccess.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="SettlementAttempt\EFSettlementAttemptDataAccess.cs" />
     <Compile Include="SettlementAttempt\ISettlementAttemptDataAccess.cs" />
@@ -54,7 +53,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\SettlementAttempt.cs" />
     <Compile Include="SettlementAttempt\QuickBaseSettlementAttemptDataAccess.cs" />
-    <Compile Include="SettlementAttempt\SettlementAttemptDataAccess.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

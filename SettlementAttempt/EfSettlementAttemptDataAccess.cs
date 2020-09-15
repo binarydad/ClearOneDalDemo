@@ -5,7 +5,7 @@ namespace BinaryDad.AggregateDal
 {
     public class EFSettlementAttemptDataAccess : ISettlementAttemptDataAccess
     {
-        public bool AddAttempt(SettlementAttempt attempt)
+        public virtual bool AddAttempt(SettlementAttempt attempt)
         {
             // 1. create attempt in SQL using entity framework
             // 2. update the "Id" property/PK of attempt upon insertion
